@@ -68,6 +68,14 @@ export default new Router({
 			}
 		},
 		{
+			path: '/wavesurfer',
+			component: () => import('./views/my/wavesurfer.vue'),
+			name: 'wavesurfer',
+			meta: {
+			    title: "wavesurfer",
+			}
+		},
+		{
 			path: '*',
 			redirect: '/404'
 		}

@@ -23,4 +23,17 @@
 .flex-justify-center{
 	justify-content: center;
 }
+html{
+	background-color: #f5f5f5;
+}
+.clearfloat::after{
+	content: "";/*设置添加的子元素的内容为空*/
+	display: block;/*设置添加的子元素为块级元素*/
+	height: 0;/*设置添加的子元素的高度为0*/
+	visibility: hidden;/*设置添加的子元素看不见*/
+	clear: both;/*给添加的子元素设置clear: both*/
+}
+.clearfloat{
+	zoom: 1
+}
 </style>
