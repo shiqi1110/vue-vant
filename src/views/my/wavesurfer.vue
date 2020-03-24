@@ -1,60 +1,55 @@
 <template>
 	<div>
 		<header-view :title="title" :color="color"></header-view>
-		<el-card class="el-card" style="background-color: #ffffff">
-			<div id="waveform" />
-			<div id="wave-timeline" />
+		<!-- <el-card class="el-card" style="background-color: #ffffff"> -->
+		<div style="background-color: #fff;">
+			<div id="waveform" ref="waveform"></div>
+			<div id="wave-timeline" ref="wave-timeline"></div>
 			<p id="subtitle" style="text-align: center;font-size:22px;color: #666699" />
+			<!-- <button type="primary" @click="plays"> 播放/暂停</button> -->
 			<div v-show="ppt" id="wave-spectrogram" class="mt-20" />
-		</el-card>
+		</div>
+		<!-- </el-card> -->
 		<el-row type="flex" class="mt-20" justify="center">
 			<el-col :span="24">
 				<el-card class="box-card">
 					<el-tooltip class="item" effect="dark" content="后退" placement="bottom">
 						<el-button circle @click="rew">
-							<img src="../../assets/img/shang.png"  class="my-btn2" alt="">
-							<!-- <svg-icon icon-class="rewkuaitui" /> -->
+							<img src="../../assets/img/shang.png" class="my-btn2" alt="" />
 						</el-button>
 					</el-tooltip>
 					<el-tooltip class="item" effect="dark" content="播放" placement="bottom">
 						<el-button circle @click="plays">
+						<!-- <el-button circle @click="playMusic"> -->
 							<van-icon name="play" v-if="!isPlay" class="my-btn" />
 							<van-icon name="stop" v-if="isPlay" class="my-btn" />
 						</el-button>
 					</el-tooltip>
 					<el-tooltip class="item" effect="dark" content="前进" placement="bottom">
-						<el-button circle @click="speek">
-							<img src="../../assets/img/xia.png" class="my-btn2" alt="">
-						</el-button>
+						<el-button circle @click="speek"><img src="../../assets/img/xia.png" class="my-btn2" alt="" /></el-button>
 					</el-tooltip>
 					<el-tooltip class="item" effect="dark" content="重放" placement="bottom">
-						<el-button circle @click="replay">
-							<van-icon name="replay" class="my-btn" />
-						</el-button>
+						<el-button circle @click="replay"><van-icon name="replay" class="my-btn" /></el-button>
 					</el-tooltip>
 					<el-tooltip class="item" effect="dark" content="指定播放" placement="bottom">
 						<el-popover placement="top" width="200" trigger="click">
 							<el-input v-model="appointTime" placeholder="请输入内容" class="input-with-select">
 								<el-button slot="append" @click="appointPlay">播放</el-button>
 							</el-input>
-							<el-button slot="reference" circle style="margin-left: 6px;">
-								<van-icon name="aim" class="my-btn" />
-							</el-button>
+							<el-button slot="reference" circle style="margin-left: 6px;"><van-icon name="aim" class="my-btn" /></el-button>
 						</el-popover>
 					</el-tooltip>
 					<span class="span" />
 					<el-tooltip class="item" effect="dark" content="音量" placement="bottom">
 						<el-popover placement="top-start" trigger="click" style="min-width: 38px;">
 							<div class="block" style="width: 42px"><el-slider v-model="value" vertical height="100px" @change="setVolume" /></div>
-							<el-button slot="reference" circle>
-								<van-icon name="volume" class="my-btn" />
-							</el-button>
+							<el-button slot="reference" circle><van-icon name="volume" class="my-btn" /></el-button>
 						</el-popover>
 					</el-tooltip>
-				
 				</el-card>
 			</el-col>
 		</el-row>
+		
 		<el-row>
 			<el-col :span="24">
 				<el-card>
@@ -68,9 +63,7 @@
 							<div class="block" style="width: 42px">
 								<el-slider v-model="zoomValue" vertical height="150px" :step="10" :min="zoomMin" :format-tooltip="formatZoom" @change="zoomChange" />
 							</div>
-							<el-button slot="reference" circle style="margin-left: 10px">
-								<i class="el-icon-rank my-btn" ></i>
-							</el-button>
+							<el-button slot="reference" circle style="margin-left: 10px"><i class="el-icon-rank my-btn"></i></el-button>
 						</el-popover>
 					</el-tooltip>
 				</el-card>
@@ -87,18 +80,17 @@
 					</el-tooltip>
 					<span class="span" />
 					<el-button circle @click="modeSwitch">
-						<van-icon v-if="!modeValue"  name="expand" class="my-btn" />
+						<van-icon v-if="!modeValue" name="expand" class="my-btn" />
 						<!-- <svg-icon v-if="!modeValue" icon-class="pingpu" /> -->
 						<!-- <svg-icon v-if="modeValue" icon-class="list" /> -->
-						<van-icon v-if="modeValue" name="bars"  class="my-btn" />
+						<van-icon v-if="modeValue" name="bars" class="my-btn" />
 					</el-button>
-					<el-button circle>
-						<van-icon name="video" class="my-btn" />
-					</el-button>
+					<el-button circle><van-icon name="video" class="my-btn" /></el-button>
 				</el-card>
 			</el-col>
 		</el-row>
 		<!-- main主体 -->
+		
 		<el-row>
 			<el-col :span="24">
 				<el-card v-if="modeValue" class="mt-20">
@@ -130,23 +122,22 @@
 					</el-table>
 				</el-card>
 				<el-row v-if="modeValue" class="clearfloat mt-20 mb-20">
-					<el-col >
+					<el-col>
 						<el-button type="success" @click="parsingPanel = !parsingPanel">查看解析</el-button>
 						<el-button type="primary" @click="answerPanel = !answerPanel">查看答案</el-button>
 						<el-button type="danger" @click="submitAnswer()">提交</el-button>
 					</el-col>
 				</el-row>
-				<el-card v-else class="mt-20">
+				<div v-else class="mt-20">
 					<el-input v-model="textarea" type="textarea" :rows="10" placeholder="请输入内容" />
-					<el-row style="margin-top: 20px">
-						<!-- <el-col :span="8" :offset="16"> -->
+					<el-row style="margin-top: 20px;width: 100%;margin-bottom: 20px;">
 						<el-col>
 							<el-button type="success" @click="parsingPanel = !parsingPanel">查看解析</el-button>
 							<el-button type="primary" @click="answerPanel = !answerPanel">查看答案</el-button>
 							<el-button type="danger" @click="submitAnswer()">提交</el-button>
 						</el-col>
 					</el-row>
-				</el-card>
+				</div>
 			</el-col>
 		</el-row>
 		<el-row v-if="parsingPanel">
@@ -173,6 +164,8 @@
 				</el-card>
 			</el-col>
 		</el-row>
+	
+	
 	</div>
 </template>
 <script>
@@ -184,14 +177,15 @@ import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.js';
 import headerView from '@/components/header.vue';
 import { Icon } from 'vant';
 export default {
-	components:{
+	components: {
 		headerView,
-		[Icon.name]:Icon,
+		[Icon.name]: Icon
 	},
 	data: function() {
 		return {
 			title: 'wavesudfer',
 			color: '',
+			wavesurfer: null,
 			answerPanel: false,
 			parsingPanel: false,
 			appointTime: 1,
@@ -549,11 +543,39 @@ export default {
 			value: 0
 		};
 	},
+	created() {
+		
+	},
 	mounted() {
-		console.log(WaveSurfer)
+		console.log(WaveSurfer,1);
+		// console.log(SpectrogramPlugin,2);
+		// console.log(CursorPlugin,3);
+		// console.log(Timeline,4);
+		// console.log(Regions,5);
+		let that = this;
 		this.$nextTick(() => {
+		// 	this.wavesurfer = WaveSurfer.create({
+		// 		container: that.$refs.waveform,
+		// 		waveColor: '#409EFF',
+		// 		progressColor: 'blue',
+		// 		backend: 'MediaElement',
+		// 		mediaControls: false,
+		// 		audioRate: '1',
+		// 		//使用时间轴插件
+		// 		plugins: [
+		// 			Timeline.create({
+		// 				container: '#wave-timeline'
+		// 			})
+		// 		]
+		// 
+		// 	  });
+		// 	// console.log(('../../assets/Beyond.mp3'))
+		// 	this.wavesurfer.load(require('@/assets/dunjia.mp3'));
+		// 	this.wavesurfer.on('error', function(err) {
+		// 		console.log(err);
+		// 	});
 			this.wavesurfer = WaveSurfer.create({
-				container: '#waveform',
+				container: that.$refs.waveform,
 				waveColor: '#FF55C5',
 				progressColor: '#00BFBF',
 				split: false,
@@ -567,7 +589,7 @@ export default {
 					SpectrogramPlugin.create({
 						container: '#wave-spectrogram',
 						labels: true,
-						colorMap: this.colorMap
+						colorMap: that.colorMap
 					}),
 					CursorPlugin.create({
 						showTime: true,
@@ -585,7 +607,8 @@ export default {
 					Regions.create()
 				]
 			});
-			this.wavesurfer.load('mp3/demo.wav');
+			console.log(that.$refs.waveform)
+			this.wavesurfer.load(require('@/assets/dunjia.mp3'));
 			this.value = this.wavesurfer.getVolume() * 100;
 			this.zoomValue = this.wavesurfer.params.minPxPerSec;
 			this.zoomMin = this.wavesurfer.params.minPxPerSec;
@@ -617,6 +640,10 @@ export default {
 		});
 	},
 	methods: {
+		playMusic() {
+		  //"播放/暂停"按钮的单击触发事件，暂停的话单击则播放，正在播放的话单击则暂停播放
+		  this.wavesurfer.playPause.bind(this.wavesurfer)()
+		},
 		modeSwitch() {
 			this.modeValue = !this.modeValue;
 		},
@@ -709,6 +736,7 @@ export default {
 			// }
 		},
 		showNote(region) {
+			console.log(region)
 			if (!this.showNote.el) {
 				this.showNote.el = document.querySelector('#subtitle');
 			}
@@ -749,34 +777,34 @@ export default {
 .mt-20 {
 	margin-top: 20px;
 }
-.mb-20{
+.mb-20 {
 	margin-bottom: 20px;
 }
 .mt-30 {
 	margin-top: 30px;
 }
-.el-button.is-circle{
+.el-button.is-circle {
 	padding: 12px;
 }
-.my-btn{
+.my-btn {
 	font-size: 42px;
 }
-.my-btn2{
+.my-btn2 {
 	width: 40px;
 }
-.my-select{
+.my-select {
 	width: 180px;
 	height: 70px !important;
 	line-height: 70px;
 }
-.span{
-	border: 2px solid #3E3A39;
+.span {
+	border: 2px solid #3e3a39;
 	display: inline-block;
 	margin-left: 20px;
 	height: 44px;
 	margin-right: 20px;
 }
-.el-card__body{
+.el-card__body {
 	display: flex;
 	align-items: center;
 	justify-content: center;

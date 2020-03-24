@@ -1,9 +1,9 @@
-let baseUrl = '';
+let webUrl = '';
 let protocolStr = document.location.protocol;
 if (protocolStr == "http:") {
-	baseUrl = ''
+	webUrl = ''
 } else if (protocolStr == "https:") {
-	baseUrl = ''
+	webUrl = ''
 }
 import request from './request'
 import axios from 'axios'
@@ -12,7 +12,7 @@ export default {
 		let $this = Vue.prototype;
 		let fnObj = {
 			request,
-			baseUrl,
+			webUrl,
 			configInfo: null,
 			// 导航栏跳转
 			toNavPage(name) {
@@ -32,7 +32,7 @@ export default {
 				}
 				return ret
 			},
-			//检测页面是否登录
+			//检测页面是否登录·
 			isLogin() {
 				let tradeToken = sessionStorage.getItem('tradeToken')
 				return new Promise((resolve, reject) => {
