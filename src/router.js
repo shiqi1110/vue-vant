@@ -76,6 +76,22 @@ export default new Router({
 			}
 		},
 		{
+			path: '/indexBar',
+			component: () => import('./views/my/indexBar.vue'),
+			name: 'indexBar',
+			meta: {
+			    title: "索引",
+			}
+		},
+		{
+			path: '/drawer',
+			component: () => import('./views/my/drawer.vue'),
+			name: 'drawer',
+			meta: {
+			    title: "抽屉",
+			}
+		},
+		{
 			path: '*',
 			redirect: '/404'
 		}

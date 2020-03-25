@@ -10,7 +10,6 @@
 </template>
 
 <script>
-	import headerView from '@/components/header.vue'
 	export default {
 		data () {
 			return {
@@ -22,7 +21,6 @@
 			}
 		},
 		components:{
-			headerView,
 		},
 		mounted() {
 			this.leftId = this.$route.query.id;

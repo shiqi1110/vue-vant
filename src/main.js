@@ -7,6 +7,11 @@ import store from './vuex/index' //引入状态管理 store
 import mixins from './js/mixins'
 Vue.use(mixins);
 
+import cuCustom from './components/cu-custom.vue'
+Vue.component('cu-custom',cuCustom)
+import headerView from './components/header.vue'
+Vue.component('header-view',headerView)
+
 Vue.prototype.baseUrl =  '';
 
 Vue.config.productionTip = false;

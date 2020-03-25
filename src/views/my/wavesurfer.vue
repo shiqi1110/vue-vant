@@ -93,14 +93,14 @@
 		
 		<el-row>
 			<el-col :span="24">
-				<el-card v-if="modeValue" class="mt-20">
+				<div v-if="modeValue" class="mt-20">
 					<el-table :data="noteData" style="width: 100%;" height="250">
-						<el-table-column label="起始" width="180">
+						<el-table-column label="起始">
 							<template slot-scope="{ row }">
 								<span>{{ formatS(row.start) }}</span>
 							</template>
 						</el-table-column>
-						<el-table-column label="截止" width="180">
+						<el-table-column label="截止">
 							<template slot-scope="{ row }">
 								<span>{{ formatS(row.end) }}</span>
 							</template>
@@ -120,8 +120,8 @@
 							</template>
 						</el-table-column>
 					</el-table>
-				</el-card>
-				<el-row v-if="modeValue" class="clearfloat mt-20 mb-20">
+				</div>
+				<el-row v-if="modeValue" class="clearfloat mt-20 mb-20" style="text-align: center;">
 					<el-col>
 						<el-button type="success" @click="parsingPanel = !parsingPanel">查看解析</el-button>
 						<el-button type="primary" @click="answerPanel = !answerPanel">查看答案</el-button>
@@ -174,11 +174,9 @@ import SpectrogramPlugin from 'wavesurfer.js/src/plugin/spectrogram.js';
 import CursorPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.cursor.js';
 import Timeline from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.js';
 import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.js';
-import headerView from '@/components/header.vue';
 import { Icon } from 'vant';
 export default {
 	components: {
-		headerView,
 		[Icon.name]: Icon
 	},
 	data: function() {
@@ -227,31 +225,31 @@ export default {
 				{
 					start: 1.1,
 					end: 4.8,
-					data: { note: '' },
+					data: { note: '发送到发送到发送到' },
 					edit: false
 				},
 				{
 					start: 5.3,
 					end: 6.6,
-					data: { note: '' },
+					data: { note: '发送到发送到发送到22' },
 					edit: false
 				},
 				{
 					start: 7.3,
 					end: 9.6,
-					data: { note: '' },
+					data: { note: '发送到发送到发送到33' },
 					edit: false
 				},
 				{
 					start: 10.9,
 					end: 16.6,
-					data: { note: '' },
+					data: { note: '发送到发送到发送到444' },
 					edit: false
 				},
 				{
 					start: 17.3,
 					end: 21.6,
-					data: { note: '' },
+					data: { note: '发送到发送到发送到569898' },
 					edit: false
 				}
 			],

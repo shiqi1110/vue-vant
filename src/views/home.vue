@@ -13,7 +13,6 @@
 
 <script>
   import HomeFooter from '../components/footer.vue'
-  import headerView from '../components/header.vue'
   import { Lazyload,Swipe, SwipeItem } from 'vant';
   export default {
     name: 'home',
@@ -30,7 +29,6 @@
     },
     components: {
 		HomeFooter,
-		headerView,
 		[Lazyload.name]: Lazyload,
 		[Swipe.name]:Swipe,
 		[SwipeItem.name]:SwipeItem,

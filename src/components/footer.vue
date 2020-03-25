@@ -150,6 +150,7 @@ export default {
 	right: 0;
 	border-top: 1px solid rgba(229, 229, 229, 1);
 	z-index: 1000;
+	text-align: center;
 }
 
 .van-tabbar-item {

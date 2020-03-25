@@ -12,6 +12,16 @@
 						<div class="flex-item">wavesurfer</div>
 						<van-icon class="item-right" name="arrow" />
 					</div>
+					<div class="main-item flex flex-align-center" @click="itemBtn(2)">
+						<van-icon class="item-right" name="friends-o" />
+						<div class="flex-item">索引</div>
+						<van-icon class="item-right" name="arrow" />
+					</div>
+					<div class="main-item flex flex-align-center" @click="itemBtn(3)">
+						<van-icon class="item-right" name="desktop-o" />
+						<div class="flex-item">抽屉</div>
+						<van-icon class="item-right" name="arrow" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -48,6 +58,10 @@ export default {
 		itemBtn(type) {
 			if(type == 1){
 				this.$router.push({path: '/wavesurfer'})
+			}else if(type == 2){
+				this.$router.push({path: '/indexBar'})
+			}else if(type == 3){
+				this.$router.push({path: '/drawer'})
 			}
 		}
 	}
@@ -55,7 +69,6 @@ export default {
 </script>
 <style scoped>
 .top {
-	background-color: #fff;
 	background-color: #ff0000;
 	/* height: 200px; */
 }
@@ -67,6 +80,7 @@ export default {
 .tophug {
 	text-align: center;
 	padding-top: 60px;
+	min-height: 110px;
 }
 .head {
 	width: 110px;
@@ -80,10 +94,15 @@ export default {
 	background-color: #fff;
 	box-shadow: 0 0 20px #a2a0a0;
 	border-radius: 10px;
+	padding:12px 0;
 }
 .main-item {
-	padding: 20px 12px;
+	padding: 24px 12px;
 	text-align: left;
+	border-bottom: 1px solid #DDDDDD;
+}
+.main-item:nth-last-of-type(1){
+	border-bottom: 0;
 }
 .main-item .flex-item {
 	font-size: 28px;
