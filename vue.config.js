@@ -18,12 +18,13 @@ module.exports = {
 				remUnit: 75
 			})
 	},
-	loaderOptions: {
-		sass: {
-			data: `@import "@/assets/style/common/variables.scss";`
-		}
+	css: {
+	    loaderOptions: {
+	        sass: {
+	            prependData: `@import "./src/css/index.scss";`
+	        }
+	    }
 	},
-
 	configureWebpack: {
 		plugins: [
 			themePlugin
