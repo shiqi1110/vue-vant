@@ -6,28 +6,32 @@
 				<van-tabbar v-model="active"  @change="onChange">
 					<van-tabbar-item>
 						<div class="van-tabbar-item__icon">
-							<i class="el-icon-house" :color="activeColor" style="font-size: 26px;"></i>
+							<i class="el-icon-house"  style="font-size: 26px;"></i>
 						</div>
-						<span>首页</span>
+						<span v-if="active == 0" :style="{color: activeColor}">首页</span>
+						<span v-if="active != 0">首页</span>
 						<!-- <img slot="icon" slot-scope="props" :src="props.active ? icon.active : icon.inactive" /> -->
 					</van-tabbar-item>
 					<van-tabbar-item>
 						<div class="van-tabbar-item__icon">
 							<i class="el-icon-news" :color="activeColor" style="font-size: 26px;"></i>
 						</div>
-						<span>新闻</span>
+						<span v-if="active == 1" :style="{color: activeColor}">新闻</span>
+						<span v-if="active != 1">新闻</span>
 					</van-tabbar-item>
 					<van-tabbar-item>
 						<div class="van-tabbar-item__icon">
 							<i class="el-icon-s-marketing" :color="activeColor" style="font-size: 26px;"></i>
 						</div>
-						<span>图表</span>
+						<span v-if="active == 2" :style="{color: activeColor}">图表</span>
+						<span v-if="active != 2">图表</span>
 					</van-tabbar-item>
 					<van-tabbar-item>
 						<div class="van-tabbar-item__icon">
-							<i class="el-icon-s-custom" :color="activeColor" style="font-size: 26px;"></i>
+							<i class="el-icon-s-custom" style="font-size: 26px;"></i>
 						</div>
-						<span>个人中心</span>
+						<span v-if="active == 3" :style="{color: activeColor}">个人中心</span>
+						<span v-if="active != 3">个人中心</span>
 					</van-tabbar-item>
 				</van-tabbar>
 			</div>
@@ -52,7 +56,7 @@ export default {
 			activeIndex: '',
 			active: 0,
 			routerName: '',
-			activeColor:'#ee0a24'
+			activeColor:'#ff0000'
 		};
 	},
 	components: {
@@ -60,7 +64,7 @@ export default {
 		[TabbarItem.name]: TabbarItem
 	},
 	computed: {
-		...mapState(['nowIndex'])
+		...mapState(['nowIndex','getColor'])
 	},
 	mounted() {
 		var name = this.$route.path;
@@ -88,6 +92,11 @@ export default {
 	},
 	created() {
 		this.active = this.nowIndex;
+		if(!!this.myCommomColor){
+			this.activeColor = this.myCommomColor;
+			console.log(this.activeColor)
+		}
+		// this.activeColor = this.getColor;
 	},
 	methods: {
 		changeNav(active, name) {
@@ -157,7 +166,7 @@ export default {
 	margin-top: 0;
 }
 .van-tabbar-item--active {
-    color: #ee0a24;
+    /* color: #ee0a24; */
 }
 
 </style>

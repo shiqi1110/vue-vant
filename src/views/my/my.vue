@@ -1,7 +1,7 @@
 <template>
 	<div class="body">
 		<div class="content">
-			<div class="top">
+			<div class="top" :style="{backgroundColor:commonColor}">
 				<div class="tophug"><img class="head" src="../../assets/img/touxiang.png" alt="" /></div>
 				<img class="wave" src="../../assets/img/wave.gif" alt="" />
 			</div>
@@ -20,6 +20,11 @@
 					<div class="main-item flex flex-align-center" @click="itemBtn(3)">
 						<van-icon class="item-right" name="desktop-o" />
 						<div class="flex-item">抽屉</div>
+						<van-icon class="item-right" name="arrow" />
+					</div>
+					<div class="main-item flex flex-align-center" @click="itemBtn(4)">
+						<van-icon class="item-right" name="desktop-o" />
+						<div class="flex-item">设置</div>
 						<van-icon class="item-right" name="arrow" />
 					</div>
 				</div>
@@ -41,7 +46,8 @@ export default {
 	data() {
 		return {
 			title: '商品评价',
-			color: '#666'
+			color: '#666',
+			commonColor: '#ff0000'
 		};
 	},
 	components: {
@@ -50,7 +56,8 @@ export default {
 	},
 	computed: {},
 	created() {
-		console.log('1212121');
+		this.commonColor = this.myCommomColor;
+		// console.log('1212121');
 	},
 	activated() {},
 	deactivated() {},
@@ -62,6 +69,8 @@ export default {
 				this.$router.push({path: '/indexBar'})
 			}else if(type == 3){
 				this.$router.push({path: '/drawer'})
+			}else if(type == 4){
+				this.$router.push({path: '/themeColor'})
 			}
 		}
 	}
@@ -69,7 +78,7 @@ export default {
 </script>
 <style scoped>
 .top {
-	background-color: #ff0000;
+	/* background-color: #ff0000; */
 	/* height: 200px; */
 }
 .wave {

@@ -14,6 +14,11 @@ const mutations = {
 	SET_TITLE(state, data) {
 		state.nowTitle = data
 		localStorage.setItem("nowTitle", JSON.stringify(state.nowTitle));
+	},
+	//设置颜色
+	SET_COLOR(state, data) {
+		state.nowColor = data
+		localStorage.setItem("nowColor", JSON.stringify(state.nowColor));
 	}
 }
 

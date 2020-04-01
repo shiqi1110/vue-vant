@@ -3,6 +3,27 @@
     <router-view></router-view>
   </div>
 </template>
+<script>
+	import { mapState } from 'vuex';
+	export default {
+		data(){
+			return {
+				
+			}
+		},
+		computed: {
+			...mapState(['getColor'])
+		},
+		created() {
+			// if(!!this.getColor){
+			// 	// console.log(this.getColor,8989)
+			// 	this.changeThemeColor(this.getColor)
+			// }else{
+			// 	this.initThemeColor();
+			// }
+		}
+	}
+</script>
 
 <style>
 #app {

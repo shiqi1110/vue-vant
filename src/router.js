@@ -92,6 +92,14 @@ export default new Router({
 			}
 		},
 		{
+			path: '/themeColor',
+			component: () => import('./views/my/themeColor.vue'),
+			name: 'themeColor',
+			meta: {
+			    title: "设置",
+			}
+		},
+		{
 			path: '*',
 			redirect: '/404'
 		}

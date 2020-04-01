@@ -1,3 +1,5 @@
+const themePlugin = require('./webpack/themePlugin');
+
 module.exports = {
 	baseUrl: './',
 	outputDir: 'dist',
@@ -16,6 +18,17 @@ module.exports = {
 				remUnit: 75
 			})
 	},
+	loaderOptions: {
+		sass: {
+			data: `@import "@/assets/style/common/variables.scss";`
+		}
+	},
+
+	configureWebpack: {
+		plugins: [
+			themePlugin
+		]
+	},
 	devServer: {
 		proxy: {
 			'/api': {
@@ -25,7 +38,7 @@ module.exports = {
 				// cookiePathRewrite: { // 路径重写
 				//   '/tb-customer-web_war': '/' // 替换target中的请求地址，也就是说以后你在请求地址的时候直接写成/api即可
 				// },
-				logLevel: 'debug',
+				logLevel: 'debug',
 				// pathRewrite: {
 				// 	'^/api': function(path, req) {
 				// 		return path.replace('/api', '')

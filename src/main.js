@@ -15,10 +15,20 @@ Vue.component('header-view',headerView)
 Vue.prototype.baseUrl =  '';
 
 Vue.config.productionTip = false;
-
+require('./css/index.scss');
+// console.log(myColor,'888')
 // 样式
+// import "@element-theme/theme-changed.scss";
+//导入element-theme-chalk的变量名
+// import "../../node_modules/element-theme-chalk/src/mixins/mixins.scss";
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+// import 'element-variables.scss';
+
+import { initThemeColor,changeThemeColor } from './js/themeColorClient'
+// Vue.use(changeThemeColor)
+Vue.prototype.initThemeColor = initThemeColor;
+Vue.prototype.changeThemeColor = changeThemeColor;
+
 import 'vant/lib/index.css'
 Vue.use(ElementUI);
 //使用钩子函数对路由进行权限跳转
@@ -26,6 +36,14 @@ router.beforeEach((to, from, next) => {
 	if (to.meta.title) {
 	    document.title = to.meta.title
 	}
+	let myColor = '';
+	if(!!localStorage.getItem('theme_color')){
+		myColor = localStorage.getItem('theme_color')
+	}else{
+		initThemeColor();
+	}
+	Vue.prototype.myCommomColor = myColor;
+	// console.log(localStorage.getItem('theme_color'),myColor)
 	if(to.name == 'home'){
 		store.dispatch('setIndex', 0);
 	}else if(to.name == 'news'){
@@ -39,6 +57,7 @@ router.beforeEach((to, from, next) => {
 	window.scrollTo(0,0);
 	next();
 });
+
 
 new Vue({
 	router,
