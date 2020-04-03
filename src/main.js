@@ -29,6 +29,8 @@ import { initThemeColor,changeThemeColor } from './js/themeColorClient'
 Vue.prototype.initThemeColor = initThemeColor;
 Vue.prototype.changeThemeColor = changeThemeColor;
 
+initThemeColor();
+
 import 'vant/lib/index.css'
 Vue.use(ElementUI);
 //使用钩子函数对路由进行权限跳转
@@ -39,8 +41,6 @@ router.beforeEach((to, from, next) => {
 	let myColor = '';
 	if(!!localStorage.getItem('theme_color')){
 		myColor = localStorage.getItem('theme_color')
-	}else{
-		initThemeColor();
 	}
 	Vue.prototype.myCommomColor = myColor;
 	// console.log(localStorage.getItem('theme_color'),myColor)

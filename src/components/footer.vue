@@ -50,6 +50,7 @@
 <script>
 import { mapState } from 'vuex';
 import { Tabbar, TabbarItem } from 'vant';
+ import { Button } from 'element-ui';
 export default {
 	data() {
 		return {
@@ -61,7 +62,8 @@ export default {
 	},
 	components: {
 		[Tabbar.name]: Tabbar,
-		[TabbarItem.name]: TabbarItem
+		[TabbarItem.name]: TabbarItem,
+		[Button.name]: Button,
 	},
 	computed: {
 		...mapState(['nowIndex','getColor'])

@@ -4,7 +4,6 @@
 		<div class="pd-10 theme-cl">
 		    <div>
 		        <span class="v-top" style="line-height: 30px">Change theme color to: </span>
-		        <change-color></change-color>
 		        <el-button @click="reset" size="small" style="float: right;">Reset</el-button>
 		    </div>
 		    <hr/>
@@ -96,17 +95,22 @@
     import { Button, Tag, Input, Switch, Table, TableColumn, Pagination, DatePicker } from 'element-ui';
     import Vue from 'vue'
 	import settingColor from './setting.vue'
-    Vue.use(Button)
-	Vue.use(Tag)
-	Vue.use(Input)
-	Vue.use(Switch)
-	Vue.use(Table)
-	Vue.use(TableColumn)
-    Vue.use(Pagination)
-	Vue.use(DatePicker)
+    Vue.use(Button).use(Tag).use(Input).use(Switch).use(Table).use(TableColumn).use(Pagination).use(DatePicker)
 
     export default {
         props: {},
+		computed: {},
+		components:{
+			settingColor,
+			// [Button.name]:Button,
+			// [Tag.name]:Tag,
+			// [Input.name]:Input,
+			// [Switch.name]:Switch,
+			// [Table.name]:Table,
+			// [TableColumn.name]:TableColumn,
+			// [Pagination.name]:Pagination,
+			// [DatePicker.name]:DatePicker,
+		},
         data() {
             return {
                 tx: '',
@@ -124,9 +128,8 @@
                 localStorage.removeItem('theme_color')
                 location.reload()
             }
-        },
-        computed: {},
-        components: { settingColor}
+        }
+        
     }
 </script>
 

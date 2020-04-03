@@ -78,7 +78,7 @@ export default {
 </script>
 <style scoped>
 .top {
-	/* background-color: #ff0000; */
+	background-color: #ff0000;
 	/* height: 200px; */
 }
 .wave {
