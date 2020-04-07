@@ -2,7 +2,7 @@
 	<div>
 		<header-view :title="title" :color="color"></header-view>
 		<!-- <el-card class="el-card" style="background-color: #ffffff"> -->
-		<div style="background-color: #fff;">
+		<div style="background-color: #fff;position:relative;">
 			<div id="waveform" ref="waveform"></div>
 			<div id="wave-timeline" ref="wave-timeline"></div>
 			<p id="subtitle" style="text-align: center;font-size:22px;color: #666699" />
@@ -36,13 +36,13 @@
 							<el-input v-model="appointTime" placeholder="请输入内容" class="input-with-select">
 								<el-button slot="append" @click="appointPlay">播放</el-button>
 							</el-input>
-							<el-button slot="reference" circle style="margin-left: 6px;"><van-icon name="aim" class="my-btn" /></el-button>
+							<el-button slot="reference" circle ><van-icon name="aim" class="my-btn" /></el-button>
 						</el-popover>
 					</el-tooltip>
 					<span class="span" />
 					<el-tooltip class="item" effect="dark" content="音量" placement="bottom">
-						<el-popover placement="top-start" trigger="click" style="min-width: 38px;">
-							<div class="block" style="width: 42px"><el-slider v-model="value" vertical height="100px" @change="setVolume" /></div>
+						<el-popover placement="top-start" trigger="click" width="68">
+							<div class="block" style="width: 42px"><el-slider  height="100px" v-model="value" vertical  @change="setVolume" /></div>
 							<el-button slot="reference" circle><van-icon name="volume" class="my-btn" /></el-button>
 						</el-popover>
 					</el-tooltip>
@@ -72,20 +72,25 @@
 		<el-row>
 			<el-col :span="24">
 				<el-card>
-					<el-tooltip class="item" effect="dark" content="播放倍速" placement="bottom">
-						<el-popover placement="top" width="220" trigger="click" style="margin-left: 10px">
-							<el-input-number v-model="ds" width="180" :precision="2" :step="0.1" :min="0.5" :max="2" @change="DoubleSpeed" />
-							<el-button slot="reference" round>{{ ds + ' X' }}</el-button>
-						</el-popover>
-					</el-tooltip>
-					<span class="span" />
-					<el-button circle @click="modeSwitch">
-						<van-icon v-if="!modeValue" name="expand" class="my-btn" />
-						<!-- <svg-icon v-if="!modeValue" icon-class="pingpu" /> -->
-						<!-- <svg-icon v-if="modeValue" icon-class="list" /> -->
-						<van-icon v-if="modeValue" name="bars" class="my-btn" />
-					</el-button>
-					<el-button circle><van-icon name="video" class="my-btn" /></el-button>
+					<div style="float: left;">
+						<el-tooltip class="item" effect="dark" content="播放倍速" placement="bottom">
+							<el-popover placement="top" width="220" trigger="click" style="margin-left: 10px">
+								<el-input-number v-model="ds" width="180" :precision="2" :step="0.1" :min="0.5" :max="2" @change="DoubleSpeed" />
+								<el-button slot="reference" round>{{ ds + ' X' }}</el-button>
+							</el-popover>
+						</el-tooltip>
+					</div>
+					<div style="margin-top: 4px;display:inline-block;">
+						<span class="span" />
+						<el-button circle @click="modeSwitch">
+							<van-icon v-if="!modeValue" name="expand" class="my-btn" />
+							<!-- <svg-icon v-if="!modeValue" icon-class="pingpu" /> -->
+							<!-- <svg-icon v-if="modeValue" icon-class="list" /> -->
+							<van-icon v-if="modeValue" name="bars" class="my-btn" />
+						</el-button>
+						<el-button circle><van-icon name="video" class="my-btn" /></el-button>
+					</div>
+
 				</el-card>
 			</el-col>
 		</el-row>
@@ -168,6 +173,7 @@
 	
 	</div>
 </template>
+
 <script>
 import WaveSurfer from 'wavesurfer.js/dist/wavesurfer';
 import SpectrogramPlugin from 'wavesurfer.js/src/plugin/spectrogram.js';
@@ -175,6 +181,7 @@ import CursorPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.cursor.js';
 import Timeline from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.js';
 import Regions from 'wavesurfer.js/dist/plugin/wavesurfer.regions.js';
 import { Icon } from 'vant';
+
 export default {
 	components: {
 		[Icon.name]: Icon
@@ -253,6 +260,7 @@ export default {
 					edit: false
 				}
 			],
+
 			answerData: [
 				{
 					start: 1.1,
@@ -545,12 +553,11 @@ export default {
 		
 	},
 	mounted() {
-		console.log(WaveSurfer,1);
-		// console.log(SpectrogramPlugin,2);
-		// console.log(CursorPlugin,3);
-		// console.log(Timeline,4);
-		// console.log(Regions,5);
+		// console.log(WaveSurfer,1);
 		let that = this;
+		// console.log(this.loading)
+		that.showLoading.show()
+		// console.log(that.loading,'789785')
 		this.$nextTick(() => {
 		// 	this.wavesurfer = WaveSurfer.create({
 		// 		container: that.$refs.waveform,
@@ -605,7 +612,7 @@ export default {
 					Regions.create()
 				]
 			});
-			console.log(that.$refs.waveform)
+			// console.log(that.$refs.waveform)
 			this.wavesurfer.load(require('@/assets/dunjia.mp3'));
 			this.value = this.wavesurfer.getVolume() * 100;
 			this.zoomValue = this.wavesurfer.params.minPxPerSec;
@@ -615,6 +622,7 @@ export default {
 			this.wavesurfer.backend.setFilter(this.wavesurfer.panner);
 			const _this = this;
 			this.wavesurfer.on('ready', function() {
+				that.showLoading.hide();
 				_this.wavesurfer.enableDragSelection({
 					color: _this.randomColor(0.1)
 				});
@@ -768,7 +776,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 #waveform {
 	position: relative;
 }
@@ -788,7 +796,7 @@ export default {
 	font-size: 42px;
 }
 .my-btn2 {
-	width: 40px;
+	width: 40px !important;
 }
 .my-select {
 	width: 180px;

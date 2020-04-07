@@ -19,7 +19,7 @@ let $this = Vue.prototype, requestAmount = 0
 
 const request = (url = '', data = {}, type = 'GET', postType) => {
 	requestAmount++;
-	// $this.loading.show()
+	$this.showLoading.show()
 
 	url = apiUrl + url
 	let headers = {
@@ -70,7 +70,7 @@ const request = (url = '', data = {}, type = 'GET', postType) => {
 		promise.then(response => {
 			requestAmount--;
 			if(requestAmount === 0){
-				// $this.loading.hide()
+				$this.showLoading.hide()
 			}
 			// 成功回调
 			if ((type === 'post' || type === 'POST' || type === 'put') && !!response.data.msg) {
@@ -81,7 +81,7 @@ const request = (url = '', data = {}, type = 'GET', postType) => {
 		.catch(error => {
 			requestAmount--;
 			if(requestAmount === 0){
-				// $this.loading.hide()
+				$this.showLoading.hide()
 			}
 
 			if (error.response.data.msg) {
@@ -93,7 +93,6 @@ const request = (url = '', data = {}, type = 'GET', postType) => {
 			// 失败回调reject()
 			!!reject && reject(error)
 		})
-
 	})
 }
 

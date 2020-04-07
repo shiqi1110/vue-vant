@@ -76,7 +76,7 @@ export default {
 	}
 };
 </script>
-<style scoped>
+<style scoped  lang="scss">
 .top {
 	background-color: #ff0000;
 	/* height: 200px; */

@@ -59,7 +59,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped  lang="scss">
 .login-wrap {
     position: relative;
     width: 100%;

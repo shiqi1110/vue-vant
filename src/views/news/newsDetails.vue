@@ -3,7 +3,9 @@
 		<header-view :title="title" :color="color"></header-view>
 		<div class="page">
 			<div class="title">{{infoData.title}}</div>
-			<div v-html="detailContent(content)"></div>
+			<div style="max-width: 100%;overflow: hidden;word-break: break-word;">
+				<div v-html="detailContent(content)"></div>
+			</div>
 		</div>
 	
 	</div>
@@ -43,7 +45,7 @@
 	}
 </script>
 
-<style>
+<style  lang="scss">
 	.page{
 		padding: 16px;
 		text-align: left;

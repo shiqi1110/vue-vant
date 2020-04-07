@@ -62,7 +62,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped  lang="scss">
 	/* 自定义样式 */
 	.bg-gradual-blue{
 		background-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);

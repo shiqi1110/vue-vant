@@ -18,7 +18,7 @@
 		    <!--<el-button type="warning">warning</el-button>-->
 		    <!--<el-button type="danger">danger</el-button>-->
 		    <el-button type="text" icon="el-icon-s-tools">text</el-button>
-		    |
+			<p/>
 		    <el-button plain icon="el-icon-upload">default</el-button>
 		    <el-button plain type="primary" icon="el-icon-picture">primary</el-button>
 		    <!--<el-button plain type="success">success</el-button>-->
@@ -33,7 +33,7 @@
 		    <!--<el-button type="warning" :loading="true">warning</el-button>-->
 		    <!--<el-button type="danger" :loading="true">danger</el-button>-->
 		    <el-button type="text" :loading="true">text</el-button>
-		    |
+			<p/>
 		    <el-button plain :loading="true">default</el-button>
 		    <el-button plain type="primary" :loading="true">primary</el-button>
 		    <!--<el-button plain type="success" :loading="true">success</el-button>-->
@@ -43,9 +43,12 @@
 		
 		    <p/>
 		    <el-tag closable>Color of element-ui css</el-tag>
+			<p/>
 		    <el-input style="width: 200px" suffix-icon="el-icon-search" placeholder="Input ..." v-model="tx"></el-input>
+			<p/>
 		    <el-switch v-model="checked" active-text="switch">
 		    </el-switch>
+			<p/>
 		    <el-date-picker v-model="date"></el-date-picker>
 		
 		    <p/>
@@ -59,19 +62,24 @@
 		                         :min-width="120" :show-overflow-tooltip="true">
 		        </el-table-column>
 		    </el-table>
-		    <el-pagination
-		        :current-page="1"
-		        :page-sizes="[10,20]"
-		        :page-size="12"
-		        :total="56">
-		    </el-pagination>
+			<p/>
+			<div >
+				<el-pagination
+						:current-page="1"
+						:page-sizes="[10,20]"
+						:page-size="12"
+						:total="36">
+				</el-pagination>
+			</div>
 		
 		    <p/>
 		    <hr/>
 		    <h2>self css:</h2>
 		    <div>
 		        <nav class="series-primary">primary color in self css</nav>
+				<p></p>
 		        <nav class="series-3">primary color series in self css</nav>
+				<p></p>
 		        <nav class="series-5">primary color series in self css</nav>
 		    </div>
 		
@@ -165,10 +173,13 @@
     h2 {
         margin-top: 30px;
     }
-
+	.theme-cl{
+		text-align: center;
+	}
     .theme-cl ::v-deep {
         .el-button {
-            width: 120px;
+            width: 200px;
+			margin: 10px;
         }
 
         .el-table .el-table__row--striped td {

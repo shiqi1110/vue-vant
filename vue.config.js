@@ -1,14 +1,15 @@
 const themePlugin = require('./webpack/themePlugin');
 
 module.exports = {
-	baseUrl: './',
+	publicPath: './',
+	// baseUrl: './',
 	outputDir: 'dist',
 	assetsDir: 'static',
 	productionSourceMap: false,
 	chainWebpack: (config) => {
 		config.module
-			.rule('css')
-			.test(/\.css$/)
+			.rule('scss')
+			.test(/\.scss$/)
 			.oneOf('vue')
 			.resourceQuery(/\?vue/)
 			.use('px2rem')
@@ -23,7 +24,16 @@ module.exports = {
 	        sass: {
 	            prependData: `@import "./src/css/index.scss";`
 	        }
-	    }
+	    },
+		// postcss: {
+		// 	plugins: [
+		// 		require('postcss-plugin-px2rem')({
+		// 			remValue: 75,
+		// 			mediaQuery: true, //（布尔值）允许在媒体查询中转换px。
+		// 			minPixelValue: 3 //设置要替换的最小像素值(3px会被转rem)。 默认 0
+		// 		})
+		// 	]
+		// }
 	},
 	configureWebpack: {
 		plugins: [

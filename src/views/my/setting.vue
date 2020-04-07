@@ -35,7 +35,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.page{
 		padding: 30px;
 	}

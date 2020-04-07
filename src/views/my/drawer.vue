@@ -63,7 +63,7 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	page {
 		background-image: var(--gradualBlue);
 		width: 100vw;

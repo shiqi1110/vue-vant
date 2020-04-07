@@ -36,7 +36,7 @@
 				</van-tabbar>
 			</div>
 		</div>
-		
+
 		<!--<div class="footerHug" v-model="activeIndex" @change="changeNav">-->
 		<!--<div class="footerItem">首页</div>-->
 		<!--<div class="footerItem">分类</div>-->
@@ -45,12 +45,15 @@
 		<!--<div class="footerItem">我的</div>-->
 		<!--</div>-->
 	</div>
+
 </template>
 
 <script>
 import { mapState } from 'vuex';
 import { Tabbar, TabbarItem } from 'vant';
  import { Button } from 'element-ui';
+import Vue from 'vue'
+Vue.use(Button);
 export default {
 	data() {
 		return {
@@ -62,8 +65,7 @@ export default {
 	},
 	components: {
 		[Tabbar.name]: Tabbar,
-		[TabbarItem.name]: TabbarItem,
-		[Button.name]: Button,
+		[TabbarItem.name]: TabbarItem
 	},
 	computed: {
 		...mapState(['nowIndex','getColor'])
@@ -136,7 +138,12 @@ export default {
 };
 </script>
 
-<style>
+<style scoped  lang="scss">
+	@import "../css/defines.scss";
+	.van-tabbar-item--active {
+		 color:  $--color-primary;
+	}
+
 .footerHugK {
 	margin-top: 43px;
 	height: 98px;
@@ -167,8 +174,6 @@ export default {
 .van-tabbar-item {
 	margin-top: 0;
 }
-.van-tabbar-item--active {
-    /* color: #ee0a24; */
-}
+
 
 </style>

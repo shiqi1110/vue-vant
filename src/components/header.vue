@@ -40,7 +40,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.backHug {
 		position: relative;
 		height: 88px;

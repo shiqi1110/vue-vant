@@ -51,7 +51,11 @@
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
+	/*@import "../css/defines.scss";*/
+
+
+
   .title{
   	  font-size: 24px;
   }
