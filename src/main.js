@@ -8,7 +8,6 @@ import mixins from './js/mixins'
 Vue.use(mixins);
 
 import showLoading from './components/loading/index.js'
-// require("./components/loading/index.js")
 
 import cuCustom from './components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)

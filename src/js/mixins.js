@@ -70,7 +70,6 @@ export default {
 							'Content-Type': 'multipart/form-data',
 						},
 					}).then(res => {
-						$this.toast(i18n.Uploaded_successfully)
 						resolve(res.data);
 					}).catch(err => {
 						!!reject && reject();
