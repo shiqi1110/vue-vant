@@ -3,8 +3,8 @@
 		<setting-color></setting-color>
 		<div class="pd-10 theme-cl">
 		    <div>
-		        <span class="v-top" style="line-height: 30px">Change theme color to: </span>
-		        <el-button @click="reset" size="small" style="float: right;">Reset</el-button>
+		        <span class="v-top" style="line-height: 42px">Change theme color to: </span>
+		        <el-button @click="reset" size="small" >Reset</el-button>
 		    </div>
 		    <hr/>
 		    <h2>

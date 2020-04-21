@@ -22,7 +22,7 @@ if (!Vue.prototype.showLoading) {
 }
 Vue.mixin({
 	created() {
-		this.showLoading = Vue.prototype.showLoading
+		this.show = Vue.prototype.showLoading
 	}
 })
 

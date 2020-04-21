@@ -554,9 +554,10 @@ export default {
 	},
 	mounted() {
 		// console.log(WaveSurfer,1);
-		let that = this;
+		// let that = this;
+		const _this = this;
 		// console.log(this.loading)
-		that.showLoading.show()
+		_this.showLoading.show()
 		// console.log(that.loading,'789785')
 		this.$nextTick(() => {
 		// 	this.wavesurfer = WaveSurfer.create({
@@ -580,7 +581,7 @@ export default {
 		// 		console.log(err);
 		// 	});
 			this.wavesurfer = WaveSurfer.create({
-				container: that.$refs.waveform,
+				container: _this.$refs.waveform,
 				waveColor: '#FF55C5',
 				progressColor: '#00BFBF',
 				split: false,
@@ -594,7 +595,7 @@ export default {
 					SpectrogramPlugin.create({
 						container: '#wave-spectrogram',
 						labels: true,
-						colorMap: that.colorMap
+						colorMap: _this.colorMap
 					}),
 					CursorPlugin.create({
 						showTime: true,
@@ -612,7 +613,7 @@ export default {
 					Regions.create()
 				]
 			});
-			// console.log(that.$refs.waveform)
+			// console.log(_this.$refs.waveform)
 			this.wavesurfer.load(require('@/assets/dunjia.mp3'));
 			this.value = this.wavesurfer.getVolume() * 100;
 			this.zoomValue = this.wavesurfer.params.minPxPerSec;
@@ -620,9 +621,9 @@ export default {
 			this.wavesurfer.zoom(Number(this.zoomValue));
 			this.wavesurfer.panner = this.wavesurfer.backend.ac.createPanner();
 			this.wavesurfer.backend.setFilter(this.wavesurfer.panner);
-			const _this = this;
+			
 			this.wavesurfer.on('ready', function() {
-				that.showLoading.hide();
+				_this.showLoading.hide();
 				_this.wavesurfer.enableDragSelection({
 					color: _this.randomColor(0.1)
 				});
